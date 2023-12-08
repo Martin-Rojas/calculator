@@ -11,8 +11,8 @@ body {
   background-color: #bc96f2;
 }
 
-h1{
-    color: azure;
+h1 {
+  color: azure;
 }
 
 .btn {
@@ -43,10 +43,20 @@ h1{
     0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%);
 }
 
+.row1,
+.row5 {
+  display: flex;
+}
+
+#divide,
+#equal {
+  flex-grow: 2;
+}
+
 .btns-row1,
 .btns-last-row {
   border: 1px blue solid;
-  width: 100px;
+  width: 75px;
   height: 80px;
 }
 
@@ -73,6 +83,15 @@ h1{
   height: 50px;
   margin-left: 50px;
   position: relative;
+}
+
+.operation{
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    top: 8px;
+    right: 0;
+    margin-right: 2px; 
 }
 
 .result {

@@ -1,91 +1,143 @@
-const btnNineElement = document.getElementById("nine");
-const btnEightElement = document.getElementById("eight");
+const btnsNumbers = document.querySelectorAll(`[data-number]`);
+const btnsOperators = document.querySelectorAll(`[data-operator]`);
 
-const btnAddElement = document.querySelector("#add");
 const btnEqualElement = document.querySelector("#equal");
-
 const resultElement = document.querySelector(".result");
+const operateElement = document.querySelector(".operation");
 const btnClearElement = document.querySelector("#clear");
-
-console.log(btnAddElement.id);
+const btnDeleteElement = document.querySelector("#delete");
 
 let input = "";
+let inputHistory = "";
 let number = "";
 let number2 = "";
+let curOperator = "";
+let prevOperator = "";
 let operator = "";
+let display = "";
+let result = "";
 
-console.log(btnAddElement.value);
-
-// basic math operators
-const add = (input) => {
-  console.log(input);
-  const arrNumbers = input.split("+");
-  console.log(arrNumbers);
-  number = arrNumbers[0];
-  number2 = arrNumbers[1];
-
-  console.log(typeof Number(number));
-  console.log(typeof number2);
+// math operators
+const add = (number, number2) => {
   return Number(number) + Number(number2);
 };
 
-const subtract = (input) => {
-  console.log(input);
-  const arrNumbers = input.split("+");
-  console.log(arrNumbers);
-  number = arrNumbers[0];
-  number2 = arrNumbers[1];
-
-  console.log(typeof Number(number));
-  console.log(typeof number2);
+const subtract = (number, number2) => {
   return Number(number) - Number(number2);
 };
 
-const multiply = (input) => {
-  console.log(input);
-  const arrNumbers = input.split("+");
-  console.log(arrNumbers);
-  number = arrNumbers[0];
-  number2 = arrNumbers[1];
-
-  console.log(typeof Number(number));
-  console.log(typeof number2);
+const multiply = (number, number2) => {
   return Number(number) * Number(number2);
 };
 
-const divide = (input) => {
-  console.log(input);
-  const arrNumbers = input.split("+");
-  console.log(arrNumbers);
-  number = arrNumbers[0];
-  number2 = arrNumbers[1];
-
-  console.log(typeof Number(number));
-  console.log(typeof number2);
+const divide = (number, number2) => {
   return Number(number) / Number(number2);
+};
+
+const operate = (operator, number, number2) => {
+  if (operator === "+") {
+    return add(number, number2);
+  } else if (operator === "-") {
+    return subtract(number, number2);
+  } else if (operator === "*") {
+    return multiply(number, number2);
+  } else if (operator === "/") {
+    return divide(number, number2);
+  }
 };
 
 btnClearElement.addEventListener("click", () => {
   input = "";
+  inputHistory = "";
+  result = "";
+  number = "";
+  number2 = "";
+  operator = "";
   resultElement.textContent = input;
+  operateElement.textContent = inputHistory;
 });
 
-btnNineElement.addEventListener("click", () => {
-  input += btnNineElement.value;
+btnDeleteElement.addEventListener("click", () => {
+  let newString = input.slice(0, input.length - 1);
+  let newHistoryString = inputHistory.slice(0, input.length - 1);
+  input = newString;
+  inputHistory = newHistoryString;
   resultElement.textContent = input;
+  operateElement.textContent = inputHistory;
 });
 
-btnEightElement.addEventListener("click", () => {
-  input += btnEightElement.value;
-  resultElement.textContent = input;
+//////////////////////////////////////////////////////
+
+[...btnsNumbers].forEach((btn) => {
+  btn.addEventListener(`click`, () => {
+    input += btn.value;
+    resultElement.textContent = input;
+
+    if (operator === "") {
+      inputHistory += btn.value;
+      operateElement.textContent = inputHistory;
+    }
+
+    if (number !== "" && operator === "") {
+      operateElement.textContent = inputHistory;
+    }
+
+    //console.log(`result: ${result}`);
+    // console.log(`Operator is ${operator}`);
+    // console.log(`prevOP is btnNums: ${prevOperator}`);
+    //console.log(`number1: ${number}`);
+
+    // get ist value num
+    if (operator === "") {
+      number = input;
+    } else {
+      number2 = input;
+      resultElement.textContent = input;
+    }
+  });
 });
 
-btnAddElement.addEventListener("click", () => {
-  input += btnAddElement.value;
-  resultElement.textContent = input;
-  //console.log(add());
-});
+[...btnsOperators].forEach((btn) => {
+  btn.addEventListener("click", () => {
+    inputHistory += btn.value;
+    operateElement.textContent = inputHistory;
 
-btnEqualElement.addEventListener("click", () => {
-  console.log(add(input));
+    // console.log(`HistoryInp: ${inputHistory}`);
+    // console.log(`num: ${number}`);
+    // console.log(`number2: ${number2}`);
+
+    input = "";
+
+    prevOperator = operator;
+    // console.log(`prevOP : ${prevOperator}`);
+
+    curOperator = btn.value;
+    //console.log(`curr : ${curOperator} `);
+
+    if (number !== `` && number2 !== `` && curOperator !== "") {
+      inputHistory += btn.value;
+
+      //console.log(`before line result ${number} ${prevOperator} ${number2}`);
+      result = operate(prevOperator, number, number2);
+
+      display = result.toString();
+      inputHistory = result.toString();
+
+      prevOperator = curOperator;
+      number2 = "";
+      input = "";
+      number = result;
+      curOperator = "";
+      operator = "";
+      //console.log(`after line result ${number} ${prevOperator} ${number2}`);
+
+      resultElement.textContent = display;
+      operateElement.textContent = inputHistory + prevOperator;
+    }
+    if (operator === "") {
+      operator = btn.value;
+    }
+
+    console.log("end line" + operator);
+  });
 });

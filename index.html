@@ -17,45 +17,77 @@
     <div class="calculator">
       <h1>Calculator</h1>
       <div class="screen">
-        <div class="result">47</div>
         <div class="operation"></div>
+        <div class="result">0</div>
       </div>
       <div class="btns">
         <div class="row1">
           <button class="btn btns-row1" id="clear">
             <i class="fa-solid fa-trash"></i></button
-          ><button class="btn btns-row1" id="delete">
+          ><button class="btn btns-row1" id="delete" value="delete">
             <i class="fa-solid fa-delete-left"></i></button
-          ><button class="btn btns-row1" id="divide" value="/">
+          ><button class="btn btns-row1" id="divide" data-operator value="/">
             <i class="fa-solid fa-divide"></i>
           </button>
         </div>
         <div class="row2">
-          <button class="btn btns-middle-rows" id="seven">7</button
-          ><button class="btn btns-middle-rows" id="eight" value="8">8</button
-          ><button class="btn btns-middle-rows" id="nine" value="9">9</button
-          ><button class="btn btns-middle-rows" id="multiply" value="*"> 
+          <button class="btn btns-middle-rows" id="seven" value="7" data-number>
+            7</button
+          ><button
+            class="btn btns-middle-rows"
+            id="eight"
+            value="8"
+            data-number
+          >
+            8</button
+          ><button class="btn btns-middle-rows" id="nine" value="9" data-number>
+            9</button
+          ><button
+            class="btn btns-middle-rows"
+            id="multiply"
+            data-operator
+            value="*"
+          >
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
         <div class="row3">
-          <button class="btn btns-middle-rows" id="six">6</button
-          ><button class="btn btns-middle-rows" id="five">5</button
-          ><button class="btn btns-middle-rows" id="four">4</button
-          ><button class="btn btns-middle-rows" id="subtract" value="-">
+          <button class="btn btns-middle-rows" id="six" value="6" data-number>
+            6</button
+          ><button class="btn btns-middle-rows" id="five" value="5" data-number>
+            5</button
+          ><button class="btn btns-middle-rows" id="four" value="4" data-number>
+            4</button
+          ><button
+            class="btn btns-middle-rows"
+            id="subtract"
+            data-operator
+            value="-"
+          >
             <i class="fa-solid fa-minus"></i>
           </button>
         </div>
         <div class="row4">
-          <button class="btn btns-middle-rows" id="three">3</button
-          ><button class="btn btns-middle-rows" id="two">2</button
-          ><button class="btn btns-middle-rows" id="one">1</button
-          ><button class="btn btns-middle-rows" id="add" value="+">
+          <button class="btn btns-middle-rows" id="one" value="1" data-number>
+            1
+          </button
+          ><button class="btn btns-middle-rows" id="two" value="2" data-number>
+            2
+          </button
+          ><button class="btn btns-middle-rows" id="three" value="3" data-number>
+            3</button
+          ><button
+            class="btn btns-middle-rows"
+            id="add"
+            data-operator
+            value="+"
+          >
             <i class="fa-solid fa-plus"></i>
           </button>
         </div>
         <div class="row5">
-          <button class="btn btns-last-row" id="zero">0</button
+          <button class="btn btns-last-row" id="zero" value="0" data-number>
+            0</button
           ><button class="btn btns-last-row" id="decimal">.</button
           ><button class="btn btns-last-row" id="equal" value="=">
             <i class="fa-solid fa-equals"></i>
