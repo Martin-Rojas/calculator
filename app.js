@@ -141,3 +141,41 @@ btnDeleteElement.addEventListener("click", () => {
     console.log("end line" + operator);
   });
 });
+
+btnEqualElement.addEventListener("click", () => {
+  console.log(`it works`);
+  inputHistory += btnEqualElement.value;
+  operateElement.textContent = inputHistory;
+
+  input = "";
+
+  prevOperator = operator;
+  // console.log(`prevOP : ${prevOperator}`);
+
+  curOperator = btnEqualElement.value;
+  //console.log(`curr : ${curOperator} `);
+
+  if (number !== `` && number2 !== `` && curOperator !== "") {
+    inputHistory += btnEqualElement.value;
+
+    console.log(`before line result ${number} ${prevOperator} ${number2}`);
+    result = operate(prevOperator, number, number2);
+
+    display = result.toString();
+    inputHistory = result.toString();
+
+    prevOperator = curOperator;
+    number2 = "";
+    input = "";
+    number = result;
+    curOperator = "";
+    operator = "";
+    console.log(
+      `inside of btn= after line result ${number} ${prevOperator} ${number2}`
+    );
+
+    resultElement.textContent = display;
+    operateElement.textContent = inputHistory + btnEqualElement.value;
+  }
+   
+});
